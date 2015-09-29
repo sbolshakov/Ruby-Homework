@@ -73,19 +73,19 @@ class Train
   end
 
   def nearby_stations
-    three_stations = {}
+    nearby_stations = {}
     if @train_route_position != @train_route.first
-      three_stations['Предыдущая станция маршрута'] = @train_route[@train_route.index(@train_route_position) - 1]
+      nearby_stations[:prev_station] = @train_route[@train_route.index(@train_route_position) - 1]
     else
-      three_stations['Предыдущая станция маршрута'] = 'Находимся на первой станции'
+      nearby_stations[:prev_station] = 'Находимся на первой станции'
     end
-    three_stations['Текущая станция маршрута'] = @train_route_position
+    nearby_stations[:current_station] = @train_route_position
     if @train_route_position != @train_route.last
-      three_stations['Следующая станция маршрута'] = @train_route[@train_route.index(@train_route_position) + 1]
+      nearby_stations[:next_station] = @train_route[@train_route.index(@train_route_position) + 1]
     else
-      three_stations['Следующая станция маршрута'] = 'Находимся на последней станции'
+      nearby_stations[:next_station] = 'Находимся на последней станции'
     end
-    three_stations
+    nearby_stations
   end
 
 end
