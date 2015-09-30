@@ -63,12 +63,12 @@ class Train
   end
 
   def route_go_next_station
-    @train_route_position != @train_route.last ? next_station_index = @train_route.index(@train_route_position) + 1 : next_station_index = @train_route.index(@train_route_position)
+    next_station_index = @train_route_position != @train_route.last ?  @train_route.index(@train_route_position) + 1 :  @train_route.index(@train_route_position)
     @train_route_position = @train_route[next_station_index]
   end
 
   def route_go_prev_station
-    @train_route_position != @train_route.first ? next_station_index = @train_route.index(@train_route_position) - 1 : next_station_index = @train_route.index(@train_route_position)
+    next_station_index = @train_route_position != @train_route.first ?  @train_route.index(@train_route_position) - 1 : @train_route.index(@train_route_position)
     @train_route_position = @train_route[next_station_index]
   end
 
