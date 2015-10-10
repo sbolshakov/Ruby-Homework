@@ -26,7 +26,7 @@ def print_trains_list(type)
   puts 'Введите номер поезда или "выход" для выхода'
   input =  gets.chomp
   raise SystemExit if input == "выход"
-  raise ArgumentError, "Поезда нет в списке" if @trains_list[input] == nil
+  raise ArgumentError, "Поезда нет в списке" unless @trains_list[input]
   input
 end
 
@@ -42,7 +42,7 @@ def passenger_car
   end
   puts 'Введите номер вагона или "выход" для выхода'
   num = gets.chomp.to_i
-  raise ArgumentError, "Вагона нет в списке" if cars[num] == nil
+  raise ArgumentError, "Вагона нет в списке" unless cars[num]
   raise SystemExit if num == "выход"
   cars[num.to_i]
 end
@@ -59,7 +59,7 @@ def cargo_car
   end
   puts 'Введите номер вагона или "выход" для выхода'
   num = gets.chomp.to_i
-  raise ArgumentError, "Вагона нет в списке" if cars[num] == nil
+  raise ArgumentError, "Вагона нет в списке" unless cars[num]
   raise SystemExit if num == "выход"
   cars[num]
 end
@@ -67,7 +67,7 @@ end
 def enter_station
   input = gets.chomp.to_s
   raise SystemExit if input == "выход"
-  raise ArgumentError, "Станции нет в списке" if @stations_list[input] == nil
+  raise ArgumentError, "Станции нет в списке" unless @stations_list[input]
   @stations_list[input]
 end
 

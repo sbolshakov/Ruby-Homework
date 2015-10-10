@@ -15,13 +15,7 @@ class Station
     @trains_on_station = {}
   end
 
-  def validate!
-    raise ArgumentError, "Имя станции не может быть пустым" if name.nil? || name.empty?
-    raise ArgumentError, "Имя должно быть длинее двух символов" if name.length < 3
-    true
-  end
-
-  def validate?
+  def valid?
     validate!
   rescue ArgumentError
     false
@@ -47,5 +41,14 @@ class Station
     @trains_on_station.map { |train| train.type }.each { |index| list_by_type[index] += 1 }
     list_by_type
   end
+
+  protected
+
+  def validate!
+    raise ArgumentError, "Имя станции не может быть пустым" if name.nil? || name.empty?
+    raise ArgumentError, "Имя должно быть длинее двух символов" if name.length < 3
+    true
+  end
+
 
 end

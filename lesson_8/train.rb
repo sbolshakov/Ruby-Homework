@@ -21,14 +21,7 @@ class Train
     @@trains[number] = self
   end
 
-  def validate!
-    raise ArgumentError, "Тип поезда можеть быть только passenger или cargo" if type.nil? || type.empty? || (type != :passenger && type != :cargo)
-    raise ArgumentError, "Неверный номер поезда. Формат xxx-xx" unless number =~ /\A[а-яa-z0-9]{3}-?[а-яa-z0-9]{2}\z/i
-    raise ArgumentError, "Такой номер поезда уже есть!" if @@trains.keys.include?(number)
-    true
-  end
-
-  def validate?
+  def valid?
     validate!
   rescue ArgumentError
     false
@@ -85,6 +78,15 @@ class Train
       nearby_stations[:next_station] = 'Находимся на последней станции маршрута'
     end
     nearby_stations
+  end
+
+  protected
+
+  def validate!
+    raise ArgumentError, "Тип поезда можеть быть только passenger или cargo" if type.nil? || type.empty? || (type != :passenger && type != :cargo)
+    raise ArgumentError, "Неверный номер поезда. Формат xxx-xx" unless number =~ /\A[а-яa-z0-9]{3}-?[а-яa-z0-9]{2}\z/i
+    raise ArgumentError, "Такой номер поезда уже есть!" if @@trains.keys.include?(number)
+    true
   end
 
 end
